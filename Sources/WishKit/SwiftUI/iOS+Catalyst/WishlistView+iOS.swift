@@ -48,7 +48,7 @@ struct WishlistViewIOS: View {
     private var colorScheme
 
     @State
-    private var selectedWishState: LocalWishState = .all
+    private var selectedWishState: LocalWishState = .library(.planned)
 
     @ObservedObject
     var wishModel: WishModel
@@ -88,11 +88,8 @@ struct WishlistViewIOS: View {
 
     private var feedbackStateSelection: [LocalWishState] {
         return [
-            .all,
             .library(.pending),
-            .library(.inReview),
             .library(.planned),
-            .library(.inProgress),
             .library(.completed),
         ]
     }
@@ -165,6 +162,7 @@ struct WishlistViewIOS: View {
                                     .tag(state)
                             }
                         }
+                        .pickerStyle(.segmented)
                     }
 
                     Spacer(minLength: 15)
